@@ -1,2 +1,6 @@
 project_name_prefix= "casino"
 region = "us-east-1"
+ami_id = "ami-0440d3b780d96b29d"
+instance_type = "t2.medium"
+subnet_id = "subnet-095799538e3a5008f"
+key_name = "tallerssh"

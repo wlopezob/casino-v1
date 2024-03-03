@@ -12,3 +12,8 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
+terraform/.terraform.lock.hcl
+terraform/.terraform/
+terraform/main.tfplan
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
