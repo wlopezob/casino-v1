@@ -48,4 +48,11 @@ resource "aws_instance" "casino_ec2" {
   tags = {
     Name = "${var.project_name_prefix}-ec2"
   }
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo dnf update -y
+              sudo dnf groupinstall "Development Tools" -y
+              curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+              source $HOME/.cargo/env
+              EOF
 }
