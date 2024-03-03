@@ -18,3 +18,4 @@ terraform/main.tfplan
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
 .env
+terraform/main.destroy.tfplan
