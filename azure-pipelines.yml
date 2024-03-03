@@ -15,7 +15,7 @@ steps:
       echo "##vso[task.setvariable variable=PATH;]$PATH:$HOME/.cargo/bin" 
   displayName: 'Install rust'
 
-- script: Cargo build --release
+- script: cargo build --release
   displayName: 'Build release'
 
 - task: PublishBuildArtifacts@1
