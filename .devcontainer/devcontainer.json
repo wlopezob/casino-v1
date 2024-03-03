@@ -11,7 +11,8 @@
 		"GitHub.copilot-chat",
 		"ms-vscode.azurecli",
 		"ms-vscode.vscode-node-azure-pack",
-		"tanhakabir.rest-book"
+		"tanhakabir.rest-book",
+		"hashicorp.terraform"
 	],
 	"settings": {
 		"workbench.preferredDarkColorTheme": "Default Dark Modern",
