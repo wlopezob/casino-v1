@@ -1,0 +1,45 @@
+use mongodb::{options::ClientOptions, Client, Database};
+use tokio::sync::{Mutex, MutexGuard};
+
+use crate::routes::init::Result;
+
+
+#[derive(Clone)]
+pub struct MongoDb {
+    db: Database,
+}
+
+impl MongoDb {
+    pub async fn init(conection_string: String, name_database: String) -> Result<Self> {
+        let mut client_options = ClientOptions
+        //::parse("mongodb+srv://saintwil:lGA6x8tfZWBO0YqI@cluster0.nmq8gg9.mongodb.net/?retryWrites=true&w=majority")
+        ::parse(conection_string)
+        .await?;
+
+        client_options.app_name = Some("player-service".to_owned());
+        let client = Client::with_options(client_options)?;
+        let db = client.database(&name_database);
+        Ok(Self { db })
+    }
+
+    pub fn get_database(&self) -> &Database {
+        &self.db
+    }
+}
+
+pub struct MongoDbConnectionManager {
+    connection: Mutex<MongoDb>,
+}
+
+impl MongoDbConnectionManager {
+    pub async fn new(conection_string: String, name_database: String) -> Result<Self> {
+        let connection = MongoDb::init(conection_string, name_database).await?;
+        Ok(Self {
+            connection: Mutex::new(connection),
+        })
+    }
+
+    pub async fn get_connection(&self) -> MutexGuard<MongoDb> {
+        self.connection.lock().await
+    }
+}

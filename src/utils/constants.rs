@@ -1,0 +1,1 @@
+pub const NAME_TABLE_USER: &str = "players";
