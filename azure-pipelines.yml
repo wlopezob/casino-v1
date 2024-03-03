@@ -19,6 +19,7 @@ steps:
   displayName: 'Build release'
 
 - task: PublishBuildArtifacts@1
+  displayName: Deploy artifact
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/target/release/casino-v1'
     ArtifactName: 'drop'
