@@ -2,20 +2,20 @@ use std::{env, sync::Arc};
 
 use axum::Router;
 use tower_http::cors::{Any, CorsLayer};
-use crate::{controllers::user_controller::user_controller, db, repository::user_repository::UserRepository, utils::custom_error::CustomError};
+use crate::{controllers::transaction_controller::user_controller, db, repository::transaction_repository::TransactionRepository, utils::custom_error::CustomError};
 
 pub type Result<T> = core::result::Result<T, CustomError>;
 
-pub type UserRepositoryState = Arc<UserRepository>;
+pub type TransactionRepositoryState = Arc<TransactionRepository>;
 
 #[derive(Clone)]
 pub struct AppState {
-    pub user_repository: UserRepositoryState,
+    pub transaction_repository: TransactionRepositoryState,
 }
 
 impl AppState {
-    pub fn new(user_repository: UserRepositoryState) -> Self {
-        Self { user_repository }
+    pub fn new(transaction_repository: TransactionRepositoryState) -> Self {
+        Self { transaction_repository }
     }
 }
 
@@ -27,7 +27,7 @@ pub async fn run() {
             .await
             .expect("Error load database"),
     );
-    let foco_repository = Arc::new(UserRepository
+    let foco_repository = Arc::new(TransactionRepository
         ::new(conection_manager.clone()));
     let app_state = AppState::new(foco_repository);
 

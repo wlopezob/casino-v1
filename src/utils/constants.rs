@@ -1,1 +1,1 @@
-pub const NAME_TABLE_USER: &str = "players";
+pub const NAME_TABLE_TRANSACTION: &str = "transactions";

@@ -1,3 +1,4 @@
 pub mod api_exception;
-pub mod user_document;
-pub mod user_response;
+pub mod transaction_document;
+pub mod transaction_request;
+pub mod transaction_response;
