@@ -12,7 +12,6 @@ pub struct MongoDb {
 impl MongoDb {
     pub async fn init(conection_string: String, name_database: String) -> Result<Self> {
         let mut client_options = ClientOptions
-        //::parse("mongodb+srv://saintwil:lGA6x8tfZWBO0YqI@cluster0.nmq8gg9.mongodb.net/?retryWrites=true&w=majority")
         ::parse(conection_string)
         .await?;
 
