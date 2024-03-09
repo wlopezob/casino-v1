@@ -1,6 +1,4 @@
 use mongodb::{options::ClientOptions, Client, Database};
-use tokio::sync::{Mutex, MutexGuard};
-
 use crate::routes::init::Result;
 
 
@@ -27,18 +25,18 @@ impl MongoDb {
 }
 
 pub struct MongoDbConnectionManager {
-    connection: Mutex<MongoDb>,
+    connection: MongoDb,
 }
 
 impl MongoDbConnectionManager {
     pub async fn new(conection_string: String, name_database: String) -> Result<Self> {
         let connection = MongoDb::init(conection_string, name_database).await?;
         Ok(Self {
-            connection: Mutex::new(connection),
+            connection: connection,
         })
     }
 
-    pub async fn get_connection(&self) -> MutexGuard<MongoDb> {
-        self.connection.lock().await
+    pub fn get_connection(&self) -> &MongoDb {
+        &self.connection
     }
 }

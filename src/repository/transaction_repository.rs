@@ -23,7 +23,6 @@ impl TransactionRepository {
         let mut transaction_documents = self
             .connection_manager
             .get_connection()
-            .await
             .get_database()
             .collection::<TransactionDocument>(NAME_TABLE_TRANSACTION)
             .find(None, None)
@@ -42,7 +41,6 @@ impl TransactionRepository {
         let transaction_document = self
             .connection_manager
             .get_connection()
-            .await
             .get_database()
             .collection::<TransactionDocument>(NAME_TABLE_TRANSACTION)
             .find_one(doc!{"trxId": trx_id}, None)
@@ -55,7 +53,6 @@ impl TransactionRepository {
         let user_document = self
             .connection_manager
             .get_connection()
-            .await
             .get_database()
             .collection::<TransactionDocument>(NAME_TABLE_TRANSACTION)
             .find_one(doc!{"trxId": trx_id}, None)
@@ -66,7 +63,6 @@ impl TransactionRepository {
     pub async fn save(&self, transaction_document: TransactionDocument) -> Result<TransactionDocument, CustomError> {
         self.connection_manager
             .get_connection()
-            .await
             .get_database()
             .collection::<TransactionDocument>(NAME_TABLE_TRANSACTION)
             .insert_one(transaction_document.clone(), None)
@@ -77,7 +73,6 @@ impl TransactionRepository {
     pub async fn delete(&self, trx_id: String) -> Result<(), CustomError> {
         self.connection_manager
             .get_connection()
-            .await
             .get_database()
             .collection::<TransactionDocument>(NAME_TABLE_TRANSACTION)
             .delete_one(doc!{"trxId": trx_id}, None)
@@ -88,7 +83,6 @@ impl TransactionRepository {
     pub async fn update(&self, trx_id: String, transaction_document: TransactionDocument) -> Result<(), CustomError> {
         self.connection_manager
             .get_connection()
-            .await
             .get_database()
             .collection::<TransactionDocument>(NAME_TABLE_TRANSACTION)
             .update_one(doc!{"trxId": trx_id}, 
