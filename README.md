@@ -12,6 +12,7 @@ cargo watch -x run ##execute with watch
 
 
 ### run
+sudo su
 git clone https://github.com/wlopezob/casino-v1
 cd casino-v1
 vim .env
