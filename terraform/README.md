@@ -16,3 +16,5 @@ terraform plan -destroy -out main.destroy.tfplan
 
 ### execute the plan destroy
 terraform apply main.destroy.tfplan
+
+
